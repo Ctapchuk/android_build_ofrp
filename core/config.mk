@@ -673,13 +673,8 @@ HOST_JDK_TOOLS_JAR := $(ANDROID_JAVA8_HOME)/lib/tools.jar
 # Darth9
 # OrangeFox post script
 FOX_CURRENT_DEV_STR := $(shell git -C bootable/recovery log -1 --format='%ad (%h)' --date=short)
-ifdef NOT_ORANGEFOX
-  FOX_VENDOR :=
-  BASH :=
-else
   FOX_VENDOR := vendor/recovery/OrangeFox_A11.sh
   BASH := bash
-endif
 # Darth9
 
 APICHECK_COMMAND := $(JAVA) -Xmx4g -jar $(APICHECK) --no-banner --compatible-output=yes

@@ -2222,7 +2222,6 @@ $(recovery_ramdisk): $(MKBOOTFS) $(COMPRESSION_COMMAND_DEPS) \
 	# Modifying ramdisk contents...
 
 # Darth9
-ifneq ($(NOT_ORANGEFOX),1)
 	$(BASH) $(FOX_VENDOR) FOX_VENDOR_CMD="Fox_Before_Recovery_Image" \
   	FOX_MANIFEST_VER="11.0" \
   	BOARD_BOOT_HEADER_VERSION="$(BOARD_BOOT_HEADER_VERSION)" \
@@ -2241,7 +2240,6 @@ ifneq ($(NOT_ORANGEFOX),1)
   	BOARD_USES_RECOVERY_AS_BOOT=$(BOARD_USES_RECOVERY_AS_BOOT) \
   	INTERNAL_KERNEL_CMDLINE="$(INTERNAL_KERNEL_CMDLINE)" \
   	recovery_ramdisk="$(recovery_ramdisk)"
-endif
 # Darth9
 
 	$(if $(filter true,$(BOARD_BUILD_SYSTEM_ROOT_IMAGE)),, \
@@ -2326,7 +2324,6 @@ $(INSTALLED_BOOTIMAGE_TARGET): $(recoveryimage-deps)
 	$(call build-recoveryimage-target, $@, $(PRODUCT_OUT)/$(subst .img,,$(subst boot,kernel,$(notdir $@))))
 
 # Darth9
-ifneq ($(NOT_ORANGEFOX),1)
 	$(BASH) $(FOX_VENDOR) FOX_VENDOR_CMD="Fox_After_Recovery_Image" \
   	FOX_MANIFEST_VER="11.0" \
   	BOARD_BOOT_HEADER_VERSION="$(BOARD_BOOT_HEADER_VERSION)" \
@@ -2346,7 +2343,6 @@ ifneq ($(NOT_ORANGEFOX),1)
   	BOARD_USES_RECOVERY_AS_BOOT=$(BOARD_USES_RECOVERY_AS_BOOT) \
   	INTERNAL_KERNEL_CMDLINE="$(INTERNAL_KERNEL_CMDLINE)" \
   	recovery_ramdisk="$(recovery_ramdisk)"
-endif
 # Darth9
 
 endif # BOARD_USES_RECOVERY_AS_BOOT
@@ -2374,7 +2370,6 @@ endif # BUILDING_RECOVERY_IMAGE
 recoveryimage: $(INSTALLED_RECOVERYIMAGE_TARGET) $(RECOVERY_RESOURCE_ZIP)
 
 # Darth9
-ifneq ($(NOT_ORANGEFOX),1)
 ifneq ($(BOARD_USES_RECOVERY_AS_BOOT),true)
 	$(BASH) $(FOX_VENDOR) FOX_VENDOR_CMD="Fox_After_Recovery_Image" \
   	FOX_MANIFEST_VER="11.0" \
@@ -2395,7 +2390,6 @@ ifneq ($(BOARD_USES_RECOVERY_AS_BOOT),true)
   	BOARD_USES_RECOVERY_AS_BOOT=$(BOARD_USES_RECOVERY_AS_BOOT) \
   	INTERNAL_KERNEL_CMDLINE="$(INTERNAL_KERNEL_CMDLINE)" \
   	recovery_ramdisk="$(recovery_ramdisk)"
-endif
 endif
 # Darth9
 
