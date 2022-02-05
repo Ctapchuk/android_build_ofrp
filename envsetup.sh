@@ -328,11 +328,13 @@ function printconfig()
     fi
     get_build_var report_config
 
-    # Darth9
-    	local DEVICE=$(cut -d'_' -f2 <<<$TARGET_PRODUCT)
-    	mkdir -p /tmp/$DEVICE
-    	export > /tmp/$DEVICE/fox_env.sh
-    # Darth9
+    if [ -f "$T/tmp/fox_env.sh" ]; then
+        rm $T/tmp/fox_env.sh
+        export > $T/tmp/fox_env.sh
+    else
+        mkdir $T/tmp > /dev/null 2>&1
+        export > $T/tmp/fox_env.sh
+    fi
 }
 
 function set_stuff_for_environment()
