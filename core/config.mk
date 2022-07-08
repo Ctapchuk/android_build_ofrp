@@ -606,6 +606,13 @@ EXTRACT_KERNEL := build/make/tools/extract_kernel.py
 # Path to tools.jar
 HOST_JDK_TOOLS_JAR := $(ANDROID_JAVA8_HOME)/lib/tools.jar
 
+# Darth9
+# OrangeFox post script
+FOX_CURRENT_DEV_STR := $(shell git -C bootable/recovery log -1 --format='%ad (%h)' --date=short)
+FOX_VENDOR := vendor/recovery/OrangeFox_A12.sh
+BASH := bash
+# Darth9
+
 APICHECK_COMMAND := $(JAVA) -Xmx4g -jar $(APICHECK) --no-banner --compatible-output=no
 
 # Boolean variable determining if the allow list for compatible properties is enabled
