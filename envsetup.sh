@@ -353,6 +353,12 @@ function printconfig()
         return
     fi
     get_build_var report_config
+
+    # Darth9
+    local DEVICE=$(cut -d'_' -f2 <<<$TARGET_PRODUCT)
+    mkdir -p /tmp/$DEVICE
+    export > /tmp/$DEVICE/fox_env.sh
+    # Darth9
 }
 
 function set_stuff_for_environment()
@@ -1873,3 +1879,17 @@ addcompletions
 export ANDROID_BUILD_TOP=$(gettop)
 
 . $ANDROID_BUILD_TOP/vendor/twrp/build/envsetup.sh
+
+# Darth9
+# prepare environment variables for importing to OrangeFox_A12.sh
+function orangefox_envsetup() {
+
+   export FOX_MANIFEST_ROOT=$(gettop)
+
+   # export OF_MANUAL_COPY_TWRES=1
+   [ -s $FOX_MANIFEST_ROOT/frameworks/base/services/core/xsd/vts/Android.mk ] && echo -n "" > $FOX_MANIFEST_ROOT/frameworks/base/services/core/xsd/vts/Android.mk
+}
+
+orangefox_envsetup
+# Darth9
+#
